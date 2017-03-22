@@ -1,0 +1,391 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>task6</title>
+
+<style type = "text/css">
+	*{
+		margin:0px;
+		padding:0px;
+	}
+	body{
+		width:980px;
+		height:1386px;
+	}
+	.header{
+		position:relative;
+		width:892px;
+		height:63px;
+	}
+	.header .color_block{
+		width:110px;
+		height:61px;
+		background-color:#D85353;
+		font-size:12px;
+		color:#ffffff;
+		font-family:黑体;
+		position:relative;
+		display:inline-block;
+	}
+	.header span{
+		position:absolute;
+		left:4px;
+		bottom:5px;
+	}
+	.header .date{
+		display:inline-block;
+		font-size:12px;
+		color:#d45d5c;
+		position:absolute;
+		right:0px;
+		bottom:5px;
+	}
+	.header .line{
+		width:892px;
+		height:2px;
+		background-color:#938e8c;
+		margin:0px;
+		position:relative;
+		bottom:3px;
+	}
+	
+	.content_1{
+		width:892px;
+		margin:30px 0px 0px 0px;
+		position:relative;
+	}
+	.content_1 .imageplace{
+		display:inline-block;
+		position:relative;
+		width:641px;
+		height:301px;
+	}
+	.content_1 .green_block{
+		width:191px;
+		height:301px;
+		background-color:green;
+		position:absolute;
+		opacity:0.3;
+	}
+	.content_1 .red_block{
+		width:191px;
+		height:301px;
+		background-color:red;
+		position:absolute;
+		opacity:0.3;
+		right:0px;
+	}
+	.content_1 img{
+		width:641px;
+		height:301px;
+	}
+	.title{
+		width:203px;
+		display:inline-block;
+		vertical-align:top;
+		text-align:left;
+		position:absolute;
+		right:0px;
+	}
+	.title .line{
+		display:inline-block;
+		vertical-align:top;
+		width:203px;
+		height:2px;
+		background-color:#cc8091;
+	}
+	.title .about{
+		font-variant:small-caps;
+		text-transform:capitalize;
+		font-size:20px;
+		text-decoration:underline;
+		color:#000000;
+	}
+	.title .abouttechnologe{
+		font-size:12px;
+		font-family:KaiTi;
+		color:#676767;
+	}
+	.title .number700{
+		font-size:116px;
+		font-family:Microsoft Yahei;
+		font-style:oblique;
+		color:#75b86b;
+		height:140px;
+		vertical-align:top;
+	}
+	.title .number32{
+		display:inline-block;
+		font-size:55px;
+		color:#cc8091;
+		font-family:Microsoft Yahei;
+	}
+	.title .css_small{
+		display:inline-block;
+	}
+	.title .css{
+		height:21px;
+		font-size:21px;
+		color:#cc8091;
+		font-family:Microsoft Yahei;
+	}
+	.title .csscss{
+		height:12px;
+		font-size:12px;
+		color:#cc8091;
+		font-family:Microsoft Yahei;
+	}
+	
+	.what_when_how{
+		width:641px;
+		padding:20px 0px 0px 0px;
+		font-size:12px;
+		font-family:Microsoft Yahei;
+		color:#231815;
+	}
+	.what{
+		vertical-align:top;
+		display:inline-block;
+		width:38%;
+	}
+	.what .what_title{
+		font-size:16px;
+		color:#418c59;
+		font-weight:bold;
+		text-decoration:underline;
+		margin:0px 0px 5px 0px;
+	}
+	.what p{
+		padding-right:20px;
+		opacity:0.7;
+		line-height:16px;
+	}
+	.when{
+		vertical-align:top;
+		display:inline-block;
+		width:30%;
+		font-size:12px;
+	}
+	.when .when_title{
+		font-size:16px;
+		font-family:Microsoft Yahei;
+		color:#d2994f;
+		font-weight:bold;
+		text-decoration:underline;
+		margin:0px 0px 5px 0px;
+	}
+	.when p{
+		padding-right:0px;
+		opacity:0.7;
+		line-height:16px;
+	}
+	.how{
+		vertical-align:top;
+		display:inline-block;
+		width:27%;
+		font-size:12px;
+		margin-left:20px;
+	}
+	.how .how_title{
+		font-size:16px;
+		font-family:Microsoft Yahei;
+		color:#cc7680;
+		font-weight:bold;
+		text-decoration:underline;
+		margin:0px 0px 5px 0px;
+	}
+	.how p{
+		opacity:0.7;
+		line-height:16px;
+	}
+	
+	.content_2{
+		display:inline-block;
+	}
+	.content_2_title{
+		margin-top:20px;
+	}
+	.content_2_title span{
+		font-family:SimHei;
+		font-size:72px;
+		font-weight:bold;
+		font-style:italic;
+		color:#f5e327;
+	}
+	.content_2_title h1{
+		font-family:SimHei;
+		font-size:42px;
+		font-weight:bold;
+		color:#11456b;
+		width:415px;
+		line-height:40px;
+	}
+	.content_2_title h2{
+		font-family:SimHei;
+		font-size:33px;
+		font-weight:bold;
+		color:#11456b;
+		margin:5px 0px 10px 0px;
+	}
+	.content_2_title .line{
+		width:415px;
+		height:2px;
+		background-color:#11456b;
+	}
+
+	.content_2 .first_letter{
+		font-family:Microsoft Yahei;
+		font-size:70px;
+		color:#f5e327;
+		float:left;
+		margin:0px 10px 10px 0px;
+		line-height:70px;
+	}
+	.content_2_p{
+		font-family:SimSun;
+		font-size:12px;
+		position:relative;
+		color:#767777;
+		margin-top:20px;
+		width:415px;
+	}
+	.content_2 img{
+		float:right;
+		width:200px;
+		height:320px;
+		margin:20px 0px 20px 20px;
+	}
+	
+	.content_3{
+		position:relative;
+		display:inline-block;
+		vertical-align:top;
+		margin:10px 0px 0px 12px;
+		height:275px;
+	}
+	.content_3 img{
+		width:458px;
+		height:275px;
+	}
+	.content_3 .transparent_block{
+		position:absolute;
+		width:458px;
+		height:61px;
+		background-color:#000000;
+		opacity:0.3;
+		bottom:0px;
+	}
+	.transparent_block .line{
+		display:inline-block;
+		width:3px;
+		height:44px;
+		background-color:#72b16a;
+		margin:10px 0px 0px 40px; 
+	}
+	.transparent_block p{
+		font-family:Microsoft Yahei;
+		font-style:italic;
+		position:relative;
+		display:inline-block;
+		font-size:12px;
+		color:#72b16a;
+		margin:0px 0px 0px 15px;
+		bottom:10px;
+	}
+	.transparent_block span{
+		font-style:normal;
+		font-size:26px;
+		color:#ffffff;
+		letter-spacing:100%;
+		margin-right:3px;
+	}
+	
+	.direction{
+		display:inline-block;
+		background-color:#eeeed6;
+		width:459px;
+		height:318px;
+		margin:25px 0px 0px 0px;
+	}
+</style>
+
+<body>
+	<div class = "header">
+		<div class = "color_block"><span>ife.baidu.com</span></div>
+		<p class = "date">2017.03</p>
+		<div class = "line"></div>
+		</div>
+		
+	<div class = "content_1">
+		<div>
+			<div class = "imageplace">
+				<div class = "green_block">
+					</div>
+				<div class = "red_block">
+					</div>
+				<img src = "https://a-ssl.duitang.com/uploads/item/201602/12/20160212113615_ahEeW.jpeg">
+				</div>
+			<div class = "title">
+				<div class = "line"></div>
+				<p class = "about">About</p>
+				<p class = "about">Technologe</p>
+				<p class = "abouttechnologe">About technologe about technologe</p>
+				<p class = "abouttechnologe">about technologe</p>
+				<p class = "number700">700</p>
+				<p class = "number32">3.2</p>
+				<div class = "css_small">	
+					<p class = "css">css</p>
+					<p class = "csscss">csscsscsscss</p>
+					</div>
+				</div>
+			</div>
+		<div class = "what_when_how">
+			<div class = "what">
+				<p class = "what_title">What</p>
+				<p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+				</div>
+			<div class = "when">
+				<p class = "when_title">When</p>
+				<p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+				</div>
+			<div class = "how">
+				<p class = "how_title">How</p>
+				<p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+				</div>
+			</div>
+		</div>
+		
+	<div class = "content_2">
+		<div class = "content_2_title">
+			<h1><span>THE</span> TECHNOLOGE OF FRONT</h1>
+			<h2>前端技术领域</h2>
+			<div class = "line"></div>
+			</div>
+		<div class = "content_2_p">
+			
+			<p><span class = "first_letter">前</span>端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端<img src="1.jpg" alt="GF">前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+			<p>&nbsp&nbsp前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+			<p>&nbsp&nbsp前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+			</div>
+		</div>
+	<div class = "content_3">
+		<div class = "imageplace">
+			<img src = "4.jpg" alt = "">
+			<div class = "transparent_block">
+				<div class = "line"></div><p><span>前端技术</span>前端技术前端技术</p>		
+				</div>
+			</div>
+		<div class = "direction">
+			<ul>
+				<li>前端前端前端前端前端前端.................<span>前端</span></li>
+				<li>前端前端前端前端.......................<span>前端前</span></li>
+				<li>前端前端前端前端前端前端前端前端..............<span>前端</span></li>
+				</ul>
+			</div>
+		</div>	
+	<div class = "footer">
+		</div>
+</body>
+</head>
+</html>
