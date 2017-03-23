@@ -34,23 +34,24 @@
 	
 	function left_in(){
 		var number = document.getElementById("number").value;
-		if(number == ''){
+		if(number == '' || isNaN(number)){
 			alert("请输入数值");
 		}else{
 			var node = document.createElement("span");
 			node.innerText = number;
+			node.onclick = del;
 			place.insertBefore(node, place.firstChild);
 		}
 	}
 	
 	function right_in(){
 		var number = document.getElementById("number").value;
-		if(number == ''){
+		if(number == '' || isNaN(number)){
 			alert("请输入数值");
 		}else{
-			var number = document.getElementById("number").value;
 			var node = document.createElement("span");
 			node.innerText = number;
+			node.onclick = del;
 			place.appendChild(node);
 		}
 	}
@@ -64,7 +65,15 @@
 		var node = place.removeChild(place.lastChild);
 		alert(node.innerText);
 	}
-
+	
+	function del(){
+			this.parentNode.removeChild(this);
+	}
+	
+	for (var i = 0;i < span.length;i++){
+		span[i].onclick = del;
+	}
+	
 	btn_left_in.onclick = left_in;
 	btn_right_in.onclick = right_in;
 	btn_left_out.onclick = left_out;
