@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>task4</title>
+<style type = "text/css">
+	button{
+		font-family:Microsoft Yahei;
+		background-color:white;
+		border:1px solid #ccc;
+		border-radius:4px;
+	}
+	span{
+		background-color:red;
+		margin:10px;
+		padding:15px;
+	}
+</style>
+</head>
+<body>
+	<input type = "text" id = "number"/>
+	<button id = "left_in">左侧入</button>
+	<button id = "right_in">右侧入</button>
+	<button id = "left_out">左侧出</button>
+	<button id = "right_out">右侧出</button>
+	<p id = "number_place"><span>10</span><span>3</span><span>7</span><span>12</span><span>11</span><span>30</span></p>
+<script>
+	var btn_left_in = document.getElementById("left_in");
+	var btn_right_in = document.getElementById("right_in");
+	var btn_left_out = document.getElementById("left_out");
+	var btn_right_out = document.getElementById("right_out");
+	var span = document.getElementsByTagName("span");
+	var place = document.getElementById("number_place");
+	
+	function left_in(){
+		var number = document.getElementById("number").value;
+		if(number == ''){
+			alert("请输入数值");
+		}else{
+			var node = document.createElement("span");
+			node.innerText = number;
+			place.insertBefore(node, place.firstChild);
+		}
+	}
+	
+	function right_in(){
+		var number = document.getElementById("number").value;
+		if(number == ''){
+			alert("请输入数值");
+		}else{
+			var number = document.getElementById("number").value;
+			var node = document.createElement("span");
+			node.innerText = number;
+			place.appendChild(node);
+		}
+	}
+	
+	function left_out(){
+		var node = place.removeChild(place.firstChild);
+		alert(node.innerText);
+	}
+	
+	function right_out(){
+		var node = place.removeChild(place.lastChild);
+		alert(node.innerText);
+	}
+
+	btn_left_in.onclick = left_in;
+	btn_right_in.onclick = right_in;
+	btn_left_out.onclick = left_out;
+	btn_right_out.onclick = right_out;
+</script>
+</body>
+</html>
