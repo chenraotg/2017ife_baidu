@@ -29,6 +29,7 @@
 		bottom:0px;
 		width:100%;
 		max-height:300px;
+		min-width:1200px;
 	}
 	#main{
 		position:relative;
@@ -44,35 +45,46 @@
 		bottom:0px;
 		
 	}
+	.current{
+		background-color:#66FF66;
+	}
+	.finished{
+		background-color:#FF9900;
+	}
 </style>
 </head>
 <body>
 	<div id = "main">
 		<div>
 			<input type = "text" id = "number"/>
-			<button id = "left_in">左侧入</button>
-			<button id = "right_in">右侧入</button>
-			<button id = "left_out">左侧出</button>
-			<button id = "right_out">右侧出</button>
+			<button id = "leftIn">左侧入</button>
+			<button id = "rightIn">右侧入</button>
+			<button id = "leftOut">左侧出</button>
+			<button id = "rightOut">右侧出</button>
 			<button id = "generate">生成随机数</button>
-			<button id = "selectsort">选择排序</button>
+			<button id = "selectSort">选择排序</button>
+			<button id = "bubbleSort">冒泡排序</button>
+			<button id = "insertSort">插入排序</button>
 		</div>
 		<div id = "div_place">	
 			<p id = "number_place"></p>
 			</div>
 	</div>	
 <script>
-	var btn_left_in = document.getElementById("left_in");
-	var btn_right_in = document.getElementById("right_in");
-	var btn_left_out = document.getElementById("left_out");
-	var btn_right_out = document.getElementById("right_out");
-	var btn_generate = document.getElementById("generate");
-	var btn_selectsort = document.getElementById("selectsort");
+	var btnLeftIn = document.getElementById("leftIn");
+	var btnRightIn = document.getElementById("rightIn");
+	var btnLeftOut = document.getElementById("leftOut");
+	var btnRightOut = document.getElementById("rightOut");
+	var btnGenerate = document.getElementById("generate");
+	var btnSelectSort = document.getElementById("selectSort");
+	var btnBubbleSort = document.getElementById("bubbleSort");
+	var btnInsertSort = document.getElementById("insertSort");
+	
 	
 	var span = document.getElementsByTagName("span");
 	var place = document.getElementById("number_place");
 	
-	function left_in(){
+	function leftIn(){
 		var number = document.getElementById("number").value;
 		if(span.length == 60){
 			alert("队列已达上限");
@@ -89,7 +101,7 @@
 		}
 	}
 	
-	function right_in(){
+	function rightIn(){
 		var number = document.getElementById("number").value;
 		if(span.length == 60){
 			alert("队列已达上限");
@@ -106,38 +118,37 @@
 		}
 	}
 	
-	function left_out(){
+	function leftOut(){
 		var node = place.removeChild(place.firstChild);
-		alert(node.getAttribute("value"));
+		alert(parseInt(node.style.height));
 	}
 	
-	function right_out(){
+	function rightOut(){
 		var node = place.removeChild(place.lastChild);
-		alert(node.getAttribute("value"));
+		alert(parseInt(node.style.height));
 	}
 	
 	function del(){
 		this.parentNode.removeChild(this);
-		alert(this.getAttribute("value"));
+		alert(parseInt(this.style.height));
 	}
-	
+	/*
 	function render(){
 		for(var i = 0;i < span.length;i++){
 			span[i].style.height = span[i].getAttribute("value") * 3 + 'px';
 		}
-		//console.log("render了一次");
-	}
+	}*/
 	
 	function generate(){
 		place.innerHTML = "";
 		for(var i = 0;i < 60;i++){
-			var number = 10 + Math.floor((90 * Math.random()));
+			var number = 3 * (10 + Math.floor(90 * Math.random()));
 			var node = document.createElement("span");
-			node.setAttribute("value", number);
+			node.style.height = number.toString() + "px"; 
+			node.onclick = del;
 			place.appendChild(node);
-			span[i].onclick = del;
 		}
-		render();
+		
 	}
 	
 	function sleep(milliSeconds){
@@ -146,34 +157,80 @@
 		console.log("sleep" + milliSeconds);
 	}
 	
-	function select_sort(){
-		for(var i = 0;i < span.length;i++){
-			var index = i;
-			//console.log("之前的span[i]的value为" + span[i].getAttribute("value"));
-			for(var j = i + 1;j < span.length;j++){
-				if(span[index].getAttribute("value") > span[j].getAttribute("value"))		index = j;
+	function selectSort(){
+		var i = 0, j = 0, index = 0;
+		var	timer = setInterval(function (){
+			if (i < span.length){
+				console.log(i);
+				span[i].className = "current";
+				if (i > 0)	span[i - 1].className = "";
+				if (i == (span.length - 1)){
+					span[i].className = "";
+					}
+				index = i;
+				for (j = i + 1;j < span.length;j++){
+					if(span[index].offsetHeight > span[j].offsetHeight){
+						index = j;
+					}	 
+				}
+				var temp = span[i].style.height;
+				span[i].style.height = span[index].style.height;
+				span[index].style.height = temp;
+				i++;
+			}else{
+				clearInterval(timer);
 			}
-			var temp = span[i].getAttribute("value");
-			span[i].setAttribute("value", span[index].getAttribute("value"));
-			//console.log("改变后的span[i]的value为" + span[i].getAttribute("value"));
-			span[index].setAttribute("value", temp);
-			//render();
-			span[i].style.height = span[i].getAttribute("value") * 3 + 'px';
-			span[index].style.height = span[index].getAttribute("value") * 3 + 'px';
-			sleep(10);
-		}
+		},200);
 	}
 	
-	function insert_sort(){
+	function bubbleSort(){
+		var i = 0,j = 0;
+		var timer = setInterval(function(){
+			if (i < span.length){
+				if (j < span.length - i - 1){
+					if(j < span.length - i -2){
+						span[j].className = "";
+						span[j + 2].className = "current";
+					}
+					if (span[j].offsetHeight > span[j + 1].offsetHeight){
+						var temp = span[j].style.height;
+						span[j].style.height = span[j + 1].style.height;
+						span[j + 1].style.height = temp;
+					}
+					j++;
+				}
+				else{
+					if(!(span.length - 1 -i)){
+						span[0].className = "finished";
+					}else{
+						span[span.length - 2 - i].className = "";
+						span[span.length - 1 - i].className = "finished";
+					}
+					j = 0;
+					i++;
+					console.log(i);
+				}
+			}else{
+				console.log(i);
+				console.log("cleartimer");
+				clearInterval(timer);
+			}
+		},40);
+	}
+	
+	function insertSort(){
 		
 	}
-	btn_left_in.onclick = left_in;
-	btn_right_in.onclick = right_in;
-	btn_left_out.onclick = left_out;
-	btn_right_out.onclick = right_out;
-	btn_generate.onclick = generate;
-	btn_selectsort.onclick = select_sort;
 	
+	
+	btnLeftIn.onclick = leftIn;
+	btnRightIn.onclick = rightIn;
+	btnLeftOut.onclick = leftOut;
+	btnRightOut.onclick = rightOut;
+	btnGenerate.onclick = generate;
+	btnSelectSort.onclick = selectSort;
+	btnBubbleSort.onclick = bubbleSort;
+	btnInsertSort.onclick = insertSort;
 </script>
 </body>
 </html>
