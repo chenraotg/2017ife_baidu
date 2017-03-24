@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>task5</title>
+<style type = "text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	button{
+		font-family:Microsoft Yahei;
+		background-color:white;
+		border:1px solid #ccc;
+		border-radius:4px;
+		padding: 1px 6px;
+	}
+	span{
+		display:inline-block;
+		background-color:#33CCFF;
+		margin:0 2px 0 2px;
+		width:15px;
+	}
+	span:hover{
+		cursor:pointer;
+	}
+	p{
+		vertical-align:bottom;
+		bottom:0px;
+		width:100%;
+		max-height:300px;
+	}
+	#main{
+		position:relative;
+		height:500px;
+		text-align:center;
+	}
+	div{
+		text-align:center;
+	}
+	#div_place{
+		position:absolute;
+		width:100%;
+		bottom:0px;
+		
+	}
+</style>
+</head>
+<body>
+	<div id = "main">
+		<div>
+			<input type = "text" id = "number"/>
+			<button id = "left_in">左侧入</button>
+			<button id = "right_in">右侧入</button>
+			<button id = "left_out">左侧出</button>
+			<button id = "right_out">右侧出</button>
+			<button id = "generate">生成随机数</button>
+			<button id = "selectsort">选择排序</button>
+		</div>
+		<div id = "div_place">	
+			<p id = "number_place"></p>
+			</div>
+	</div>	
+<script>
+	var btn_left_in = document.getElementById("left_in");
+	var btn_right_in = document.getElementById("right_in");
+	var btn_left_out = document.getElementById("left_out");
+	var btn_right_out = document.getElementById("right_out");
+	var btn_generate = document.getElementById("generate");
+	var btn_selectsort = document.getElementById("selectsort");
+	
+	var span = document.getElementsByTagName("span");
+	var place = document.getElementById("number_place");
+	
+	function left_in(){
+		var number = document.getElementById("number").value;
+		if(span.length == 60){
+			alert("队列已达上限");
+		}else if(number == '' || isNaN(number)){
+			alert("请输入数值");
+		}else if(number < 10 || number > 100){
+			alert("请输入10-100的数字");
+		}else{
+			var node = document.createElement("span");
+			node.setAttribute("value", number);
+			node.onclick = del;
+			place.insertBefore(node, place.firstChild);
+			render();
+		}
+	}
+	
+	function right_in(){
+		var number = document.getElementById("number").value;
+		if(span.length == 60){
+			alert("队列已达上限");
+		}else if(number == '' || isNaN(number)){
+			alert("请输入数值");
+		}else if(number < 10 || number > 100){
+			alert("请输入10-100的数字");
+		}else{
+			var node = document.createElement("span");
+			node.setAttribute("value", number);
+			node.onclick = del;
+			place.appendChild(node);
+			render();
+		}
+	}
+	
+	function left_out(){
+		var node = place.removeChild(place.firstChild);
+		alert(node.getAttribute("value"));
+	}
+	
+	function right_out(){
+		var node = place.removeChild(place.lastChild);
+		alert(node.getAttribute("value"));
+	}
+	
+	function del(){
+		this.parentNode.removeChild(this);
+		alert(this.getAttribute("value"));
+	}
+	
+	function render(){
+		for(var i = 0;i < span.length;i++){
+			span[i].style.height = span[i].getAttribute("value") * 3 + 'px';
+		}
+		//console.log("render了一次");
+	}
+	
+	function generate(){
+		place.innerHTML = "";
+		for(var i = 0;i < 60;i++){
+			var number = 10 + Math.floor((90 * Math.random()));
+			var node = document.createElement("span");
+			node.setAttribute("value", number);
+			place.appendChild(node);
+			span[i].onclick = del;
+		}
+		render();
+	}
+	
+	function sleep(milliSeconds){
+		var startTime = new Date().getTime();
+		while (new Date().getTime() < startTime + milliSeconds);
+		console.log("sleep" + milliSeconds);
+	}
+	
+	function select_sort(){
+		for(var i = 0;i < span.length;i++){
+			var index = i;
+			//console.log("之前的span[i]的value为" + span[i].getAttribute("value"));
+			for(var j = i + 1;j < span.length;j++){
+				if(span[index].getAttribute("value") > span[j].getAttribute("value"))		index = j;
+			}
+			var temp = span[i].getAttribute("value");
+			span[i].setAttribute("value", span[index].getAttribute("value"));
+			//console.log("改变后的span[i]的value为" + span[i].getAttribute("value"));
+			span[index].setAttribute("value", temp);
+			//render();
+			span[i].style.height = span[i].getAttribute("value") * 3 + 'px';
+			span[index].style.height = span[index].getAttribute("value") * 3 + 'px';
+			sleep(10);
+		}
+	}
+	
+	function insert_sort(){
+		
+	}
+	btn_left_in.onclick = left_in;
+	btn_right_in.onclick = right_in;
+	btn_left_out.onclick = left_out;
+	btn_right_out.onclick = right_out;
+	btn_generate.onclick = generate;
+	btn_selectsort.onclick = select_sort;
+	
+</script>
+</body>
+</html>
