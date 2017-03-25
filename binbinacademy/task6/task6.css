@@ -1,0 +1,44 @@
+*{
+		margin:0;
+		padding:0;
+	}
+button{
+		font-family:Microsoft Yahei;
+		background-color:white;
+		border:1px solid #ccc;
+		border-radius:4px;
+		padding: 1px 6px;
+	}
+span{
+		display:inline-block;
+		background-color:#33CCFF;
+		margin:0 2px 0 2px;
+		width:25px;
+	}
+span:hover{
+		cursor:pointer;
+	}
+p{
+		vertical-align:bottom;
+		bottom:0px;
+		width:100%;
+		max-height:300px;
+		min-width:1200px;
+	}
+#main{
+		position:relative;
+		height:500px;
+		text-align:center;
+	}
+div{
+		text-align:center;
+	}
+#div_place{
+		position:absolute;
+		width:100%;
+		bottom:0px;
+		
+	}
+.current{
+		background-color:#66FF66;
+	}
