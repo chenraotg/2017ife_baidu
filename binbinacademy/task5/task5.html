@@ -219,7 +219,31 @@
 	}
 	
 	function insertSort(){
-		
+		var index = 0,i = 0;j = 0;
+		var timer = setInterval(function(){
+			j = i + 1;
+			span[j].className = "current";
+			if(i < span.length){
+				console.log("i为：" + i);
+				if(index <= i){
+					if(span[index].offsetHeight > span[j].offsetHeight){
+						span[j].className = "";
+						var node = place.removeChild(span[j]);
+						place.insertBefore(node, span[index]);
+						i++;
+						index = 0;
+					}else{
+						index++;
+					}
+				}else{
+					i++;
+					span[j].className = "";
+					index = 0;
+				}
+			}else {
+				clearInterval(timer);
+			}
+		},10)
 	}
 	
 	
