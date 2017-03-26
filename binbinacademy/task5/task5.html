@@ -159,11 +159,11 @@
 	
 	function selectSort(){
 		blockButton();
-		var i = 0, j = 0, index = 0;
+		var i = 0, j = 0, index = 0;	//index是在每次选择过程中始终最小（大）的那个
 		var	timer = setInterval(function (){
 			if (i < span.length){
 				console.log(i);
-				span[i].className = "current";
+				span[i].className = "current";	
 				if (i > 0)	span[i - 1].className = "";
 				if (i == (span.length - 1)){
 					span[i].className = "";
@@ -171,7 +171,7 @@
 				index = i;
 				for (j = i + 1;j < span.length;j++){
 					if(span[index].offsetHeight > span[j].offsetHeight){
-						index = j;
+						index = j;	//如果出现比之前index更小（大）的数，则将它标记为index
 					}	 
 				}
 				var temp = span[i].style.height;
@@ -217,18 +217,17 @@
 				enableButton();
 				clearInterval(timer);
 			}
-		},40);
+		},20);
 	}
 	
 	function insertSort(){
 		blockButton();
 		var index = 0,i = 0;j = 0;
 		var timer = setInterval(function(){
-			j = i + 1;
-			span[j].className = "current";
-			if(i < span.length){
-				console.log("i为：" + i);
-				if(index <= i){
+			j = i + 1;			//j是未排序数列的第一个，需要将j和前面已排序的数列一个个比较，然后再插入
+			if(j < span.length) span[j].className = "current";
+			if(i < span.length - 1){
+				if(index <= i){		//index是已排序数列的标针，用来跟j比较大小
 					if(span[index].offsetHeight > span[j].offsetHeight){
 						span[j].className = "";
 						var node = place.removeChild(span[j]);
