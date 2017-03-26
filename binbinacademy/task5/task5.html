@@ -158,6 +158,7 @@
 	}
 	
 	function selectSort(){
+		blockButton();
 		var i = 0, j = 0, index = 0;
 		var	timer = setInterval(function (){
 			if (i < span.length){
@@ -184,6 +185,7 @@
 	}
 	
 	function bubbleSort(){
+		blockButton();
 		var i = 0,j = 0;
 		var timer = setInterval(function(){
 			if (i < span.length){
@@ -219,6 +221,7 @@
 	}
 	
 	function insertSort(){
+		blockButton();
 		var index = 0,i = 0;j = 0;
 		var timer = setInterval(function(){
 			j = i + 1;
@@ -246,6 +249,12 @@
 		},10)
 	}
 	
+	function blockButton(){
+		var btn = document.getElementsByTagName("button");
+		for (var i = 0;i < btn.length;i++){
+			btn[i].disabled = true;
+		}
+	}
 	
 	btnLeftIn.onclick = leftIn;
 	btnRightIn.onclick = rightIn;
