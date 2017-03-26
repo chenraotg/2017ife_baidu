@@ -179,6 +179,7 @@
 				span[index].style.height = temp;
 				i++;
 			}else{
+				enableButton();
 				clearInterval(timer);
 			}
 		},200);
@@ -213,8 +214,7 @@
 					console.log(i);
 				}
 			}else{
-				console.log(i);
-				console.log("cleartimer");
+				enableButton();
 				clearInterval(timer);
 			}
 		},40);
@@ -244,6 +244,7 @@
 					index = 0;
 				}
 			}else {
+				enableButton();
 				clearInterval(timer);
 			}
 		},10)
@@ -253,6 +254,13 @@
 		var btn = document.getElementsByTagName("button");
 		for (var i = 0;i < btn.length;i++){
 			btn[i].disabled = true;
+		}
+	}
+	
+	function enableButton(){
+		var btn = document.getElementsByTagName("button");
+		for (var i = 0;i < btn.length;i++){
+			btn[i].disabled = false;
 		}
 	}
 	
