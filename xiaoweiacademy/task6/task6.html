@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <title>task6</title>
-
 <style type = "text/css">
 	*{
 		margin:0px;
@@ -309,10 +308,23 @@
 		margin:25px 0px 0px 0px;
 	}
 	.direction ul{
-		list-style-type:
+		margin:25px 25px 15px 25px;
+	}
+	.direction .contents{
+		display:flex;
+		justify-content:space-between;
+		font-family:Microsoft Yahei;
+		font-size:16px;
+		color:#5a5b5b;
+		margin:15px 5px 15px 5px;
+	}
+	.direction .small{
+		font-family:Microsoft Yahei;
+		font-size:12px;
+		font-style:italic;
 	}
 </style>
-
+</head>
 <body>
 	<div class = "header">
 		<div class = "color_block"><span>ife.baidu.com</span></div>
@@ -381,14 +393,15 @@
 			</div>
 		<div class = "direction">
 			<ul>
-				<li>前端前端前端前端前端前端.................<span>前端</span></li>
-				<li>前端前端前端前端.......................<span>前端前</span></li>
-				<li>前端前端前端前端前端前端前端前端..............<span>前端</span></li>
+				<li class = "contents"><span>前端前端前端前端前端前端前端前前</span><span class = "small">前端</span></li>
+				<li class = "contents"><span>前端前端前端前端</span><span class = "small">前端前</span></li>
+				<li class = "contents"><span>前端前端前前端前端前端前前</span><span class = "small">前端</span></li>
 				</ul>
 			</div>
 		</div>	
 	<div class = "footer">
 		</div>
+<script type = "text/javascript" src = "task6.js"></script>
 </body>
-</head>
+
 </html>

@@ -1,0 +1,17 @@
+div{
+	border:1px solid #000;
+	display:inline-block;
+	padding:10px 15px;
+	background-color:#fff;
+}
+#main{
+	max-width:80%;
+	height:40%;
+	margin:0px 100px;
+}
+body{
+	text-align:center;
+}
+p{
+	text-align:center;
+}
