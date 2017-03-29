@@ -8,7 +8,7 @@ function addEllipsis(){
 		var lastString = last.innerText;
 		console.log(firstString.length+lastString.length);
 		var span = document.createElement("span");
-		var length = 4 * (24 - firstString.length - lastString.length);
+		var length = 4 * (25 - firstString.length - lastString.length);
 		var ellipsisStr = "";
 		for (var j = 0;j < length;j++){
 			var result = ellipsisStr.concat(".");
