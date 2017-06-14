@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>task3</title>
+<style type="text/css">
+  .hidden{
+	display:none;
+  }
+</style>
+</head>
+<body>
+  <form>
+    <div>
+	  <input type="radio" value="在校生" id="student" name="profession" checked="checked"/><label for="student">在校生</label>
+	  <input type="radio" value="非在校生" id="non-student" name="profession"/><label for="non-student">非在校生</label>
+	</div>
+	<div id="school">
+	  <label>学校</label>
+	  <select id="city">
+	    <option>北京</option>
+		<option>上海</option>
+		<option>广州</option>
+	  </select>
+	  <select class="university" id="university_beijing">
+	    <option>清华大学</option>
+		<option>北京大学</option>
+		<option>人民大学</option>
+	  </select>
+	  <select class="university hidden" id="university_shanghai">
+	    <option>复旦大学</option>
+		<option>上海交通大学</option>
+		<option>同济大学</option>
+	  </select>
+	  <select class="university hidden" id="university_guangzhou">
+	    <option>中山大学</option>
+		<option>华南理工大学</option>
+		<option>华南师范大学</option>
+	  </select>
+	</div>
+	<div class="hidden" id="workPlace">
+	  <label>就业单位</label>
+	  <input />
+	</div>
+  </form>	
+<script>
+  window.onload = function(){
+    radioSwitch();
+  }
+  function radioSwitch(){
+    var professions = document.getElementsByName("profession");
+	cityToUniversity();
+    for(var i = 0;i < professions.length;i++){
+      professions[i].onchange = function(){//给radio绑定change事件;
+	    if(this.checked && this.value=="在校生"){		//判断radio的选择值
+	    document.getElementById("school").classList.remove("hidden");
+		document.getElementById("workPlace").classList.add("hidden");
+	    }else{
+	    document.getElementById("school").classList.add("hidden");
+		document.getElementById("workPlace").classList.remove("hidden");
+	    }
+	  }
+    }
+  }
+  //定义一个函数使点击city显示相应的大学
+  function cityToUniversity(){
+    var uni = [
+		"university_beijing",
+		"university_shanghai",
+		"university_guangzhou",
+		];					//大学id名
+	var select = document.getElementById("city");
+	var university = document.getElementsByClassName("university");
+	
+	//定义select选择事件；
+	select.onchange = function(){
+	  for(var i = 0;i < university.length;i++){
+	    university[i].classList.add("hidden");
+	  }
+	  document.getElementById(uni[select.selectedIndex]).classList.remove("hidden");
+	}
+  }
+  
+</script>
+</body>
+</html>

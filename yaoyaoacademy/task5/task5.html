@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>task5</title>
+<style type="text/css">
+*{
+  padding:0;
+  margin:0;
+}
+#topTable{
+  margin:0 auto;
+}
+#topTable td{
+  width:40px;
+  text-align:center;
+  padding:10px 0px;
+}
+#leftTable{
+  height:400px;
+  position:absolute;
+  margin-left:calc(50% - 240px);
+}
+#mainTable{
+  border-collapse:collapse;
+  margin:0 auto;
+}
+#mainTable td{
+  border:1px solid #000;
+  width:40px;
+  height:40px;
+}
+#controler{
+  width:200px;
+  margin:10px auto;
+}
+#square{
+  width:40px;
+  height:40px;
+  display:none;
+}
+#square_head{
+  width:40px;
+  height:10px;
+  background-color:red;
+}
+#square_body{
+  width:40px;
+  height:30px;
+  background-color:blue;
+}
+</style>
+</head>
+<body>
+	
+	  <table id="topTable">
+	    <tr>
+		  <td>1</td>
+		  <td>2</td>
+		  <td>3</td>
+		  <td>4</td>
+		  <td>5</td>
+		  <td>6</td>
+		  <td>7</td>
+		  <td>8</td>
+		  <td>9</td>
+		  <td>10</td>
+	    </tr>
+	  </table>
+	 
+	  <table id="leftTable">
+	    <tr><td>1</td></tr>
+	    <tr><td>2</td></tr>
+	    <tr><td>3</td></tr>
+	    <tr><td>4</td></tr>
+	    <tr><td>5</td></tr>
+	    <tr><td>6</td></tr>
+	    <tr><td>7</td></tr>
+	    <tr><td>8</td></tr>
+	    <tr><td>9</td></tr>
+	    <tr><td>10</td></tr>
+	  </table>
+	
+	  <div>
+	    <table id="mainTable">
+	      <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		  </tr>
+			<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		  </tr>
+		  <tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		  </tr>
+	    </table>
+	    <div id="square">
+		  <div id="square_head">
+		  </div>
+		  <div id="square_body">
+		  </div>
+		</div>
+	  </div>
+	<div id="controler">
+	  <input id="command"/>
+	  <button id="btn_excute">执行</button>
+	  <br/>
+	  <br/>
+	  <button id="btn_init">生成</button>
+	  <button id="btn_go">前进</button>
+	  <button id="btn_turnLeft">左转</button>
+	  <button id="btn_turnRight">右转</button>
+	  <button id="btn_turnBack">向后转</button>
+	</div>
+	
+	<script>
+		var btn_excute = document.getElementById("btn_excute");
+		var btn_init = document.getElementById("btn_init");
+		var btn_go = document.getElementById("btn_go");
+		var btn_turnLeft = document.getElementById("btn_turnLeft");
+		var btn_turnRight = document.getElementById("btn_turnRight");
+		var btn_turnBack = document.getElementById("btn_turnBack");
+	    var x,y;//方块的坐标，x为第几行，y表示第几列
+		var mainTable = document.getElementById("mainTable");
+		var trs = mainTable.getElementsByTagName("tr");
+		function excute(){
+		  var command = document.getElementById("command").value;
+		  command = command.toUpperCase();
+		  switch(command){
+		    case "TUN LEF":
+				turnLeft();
+				break;
+			case "TUN RIG":
+				turnRight();
+				break;
+			case "TUN BAC":
+				turnBack();
+				break;
+			case "GO":
+				go();
+				break;
+		  }
+		  
+		}
+		
+		function generate(x,y,direction){
+		  var tds = trs[x].getElementsByTagName("td");  
+		  var square = document.getElementById("square");
+		  square.style.display = "block";//将方块的display属性可见
+		  switch (direction){//根据不同方向生成不同的方块
+		    case 0:
+				square.style.transform = "rotate(0deg)";
+				tds[y].appendChild(square);
+				break;
+			case 1:
+				square.style.transform = "rotate(90deg)";
+				tds[y].appendChild(square);
+				break;
+			case 2:
+				square.style.transform = "rotate(180deg)";
+				tds[y].appendChild(square);
+				break;
+			case 3:
+				square.style.transform = "rotate(270deg)";
+				tds[y].appendChild(square);
+				break;
+		  }
+		}
+		function go(){
+		  switch (direction){
+		    case 0:
+				if(x == 0)//出界判断
+				  alert("方块出界了");
+				else{
+				  x--;
+				  generate(x,y,direction);
+				}
+				break;
+			case 1:
+				if(y == 9)//出界判断
+				  alert("方块出界了");
+				else{
+				  y++;
+				  generate(x,y,direction);
+				}
+				break;
+			case 2:
+				if(x == 9)//出界判断
+				  alert("方块出界了");
+				else{
+				  x++;
+				  generate(x,y,direction);
+				}
+				break;
+			case 3:
+				if(y == 0)//出界判断
+				  alert("方块出界了");
+				else{
+				  y--;
+				  generate(x,y,direction);
+				}
+				break;
+		  }
+		}
+		function turnLeft(){
+		  direction = (direction + 3) % 4;
+		  generate(x,y,direction);
+		}
+		function turnRight(){
+		  direction = (direction + 5) % 4;
+		  generate(x,y,direction);
+		}
+		function turnBack(){
+		  direction = (direction + 2) % 4;
+		  generate(x,y,direction);
+		}
+		function init(){
+		  //将按钮事件绑定函数
+		  btn_excute.onclick = excute;
+		  btn_go.onclick = go;
+		  btn_turnLeft.onclick = turnLeft;
+		  btn_turnRight.onclick = turnRight;
+		  btn_turnBack.onclick = turnBack;
+		  
+		  //生成方块图案
+		  x = 4;
+		  y = 4;
+		  direction = 0;
+		  generate(x,y,direction);
+		}
+		btn_init.onclick = init;
+	</script>
+</body>
+</html>

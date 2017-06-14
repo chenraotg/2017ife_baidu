@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>task6</title>
+<meta charset="utf-8"/>
+<style type="text/css">
+body{
+  text-align:center;
+  height:1200px;
+  padding:0;
+  margin:0;
+  background: url(https://hk.best-wallpaper.net/wallpaper/2560x1440/1406/Morning-scenery-fields-river-fog_2560x1440.jpg);
+}
+#btn_wake{
+  width:100px;
+  height:40px;
+  display:inline-block;
+  color:white;
+  font-size:30px;
+  font-family:Microsoft Yahei;
+  
+}
+#floatLayer{
+  text-align:center;
+  display:none;
+  position:fixed;
+  width:300px;
+  height:150px;
+  background-color:white;
+  top: calc(50% - 75px);
+  left: calc(50% - 150px);
+  z-index:100;
+}
+#floatLayer:hover{
+  cursor:move;
+}
+#mask{
+  width:100%;
+  height:100%;
+  background-color:#ccc;
+  opacity:0.6;
+  z-index:2;
+  display:none;
+  position:fixed;
+  float:right;
+}
+</style>
+</head>
+
+<body>
+	<div id="mask">
+	</div>
+	<label id="btn_wake">浮出层</label>
+	<div id="floatLayer">
+	  <p>这是一个浮出层</p>
+	  <p>拖住标题可实现移动</p>
+	  <p>点击浮出层以外部分或按钮可关闭</p>
+	  <button id="btn_hide">确定</button>
+	</div>
+	
+</body>
+<script>
+	var floatLayer = document.getElementById("floatLayer");
+	var btn_wake = document.getElementById("btn_wake");
+	var btn_hide = document.getElementById("btn_hide");
+	var mask = document.getElementById("mask");
+	btn_wake.onclick = wakeFloat; 
+	btn_hide.onclick = hideFloat;
+	mask.onclick = hideFloat;
+	floatLayer.onmousedown = drag;
+	function hideFloat(){ //隐藏浮动层
+		floatLayer.style.display = "none";
+		mask.style.display = "none";
+	}
+	function wakeFloat(){//展示浮动层
+		floatLayer.style.display = "block";
+		mask.style.display = "block";
+	}
+	function drag(ev){//拖动函数
+		var e = ev,
+			sx = e.clientX,
+			sy = e.clientY,
+			fx = sx - floatLayer.offsetLeft,//浮出层和鼠标位置的差
+			fy = sy - floatLayer.offsetTop;
+		document.onmousemove = function(ev){
+		  var l = ev.clientX - fx,
+			  t = ev.clientY - fy;
+			  floatLayer.style.left = l + 'px';
+			  floatLayer.style.top = t + 'px';
+		};
+		floatLayer.onmouseup = function(){
+		  document.onmousemove = null;
+		  floatLayer.onmouseup = null;
+		}
+	}
+</script>
+</html>

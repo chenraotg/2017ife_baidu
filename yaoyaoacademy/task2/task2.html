@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/ >
+<title>task2</title>
+<style type="text/css">
+	*{
+	  padding:0px;
+	  margin:0px;
+	}
+	span{
+	  font-weight:600;
+	  font-family:Microsoft Yahei;
+	  font-size:16px;
+	  padding:2px 10px;
+	}
+	input{
+	  border-radius:5px;
+	  border:1px solid #CCC;
+	  height:30px;
+	  width:300px;
+	}
+	.right_input{
+	  border:1px solid green;
+	  border-radius:5px;
+	  height:30px;
+	}
+	.wrong_input{
+	  border:1px solid red;
+	  border-radius:5px;
+	  height:30px;
+	}
+	.button{
+	  background-color:#2F79BA;
+	  color:white;
+	  padding:5px 15px;
+	  font-family:Microsoft Yahei;
+	  border-radius:5px;
+	}
+	div{
+	  display:flex;
+	  align-item:center;
+	}
+	p{
+	  font-size:10px;
+	  color:#ADADAD;
+	  margin-left:70px;
+	  margin-top:5px;
+	}
+	.right_message{
+	  color:green;
+	}
+	.wrong_message{
+	  color:red;
+	}
+	tr{
+	  text-align:right;
+	  vertical-align:top;
+	}
+	td{
+	  padding:5px 0px;
+	}
+</style>
+</head>
+<body>
+	<div>
+	  <form>
+	    <table>
+		<tr>
+		  <td><span>名称</span></td>
+		  <td><input/><p></p></td>
+		</tr>
+		<tr>
+		  <td><span>密码</span></td>
+		  <td><input type="password"/><p></p></td>
+		</tr>
+		<tr>
+		  <td><span>密码确认</span></td>
+		  <td><input type="password"/><p></p></td>
+		</tr>
+		<tr>
+		  <td><span>邮箱</span></td>
+		  <td><input/><p></p></td>
+		</tr>
+		<tr>
+		  <td><span>手机</span></td>
+		  <td><input/><p></p></td>
+		</tr>
+		<tr>
+		  <td colspan="2"><label class="button">提交</label></td>
+		</tr>
+		</table>
+	  <form>
+	</div>
+
+<script>
+	var keyFlag = false;
+	function insertAfter(newElement,targetElement){
+	  var parent = targetElement.parentNode;
+	  if (parent.lastChild == targetElement){
+	    parent.appendChild(newElement);
+	  } else {
+	    parent.insertBefore(newElement, targetElement.nextSibling);
+	  }
+	}
+	
+	var input = document.getElementsByTagName("input");
+	var btn = document.getElementsByClassName("button");
+	var message = document.getElementsByTagName("p");
+	input[0].onblur = checkName;
+	input[2].onblur = checkPassword;
+	input[3].onblur = checkEmail;
+	input[4].onblur = checkPhoneNumber;
+	
+	input[0].onfocus = promptName;
+	input[2].onfocus = promptPassword;
+	
+	btn[0].onclick = submit;
+	
+	function promptName(){
+	  message[0].className = "";
+	  message[0].innerHTML = "";
+	  var promptText = document.createTextNode("必填，长度为4~16个字符");
+	  message[0].appendChild(promptText);
+	}
+	function promptPassword(){
+	 
+	  if(input[2].value==""){
+	    message[2].className = "";
+	    message[2].innerHTML = "再次输入相同的密码";
+	  }
+	}
+	
+	function promptEmail(){
+	  var promptText = document.createTextNode();
+	}
+	
+	function checkName(){
+	  if(getStrLen(input[0].value) < 4||getStrLen(input[0].value) > 16){
+	    input[0].className = "wrong_input";
+		message[0].innerHTML = "名字格式错误";
+		message[0].className = "wrong_message";
+		keyFlag = false;
+	  }else{
+	    input[0].className = "right_input";
+		message[0].innerHTML = "名字可用";
+		message[0].className = "right_message";
+		keyFlag = true;
+	  }
+	}
+	function checkPassword(){
+	  if(input[1].value === input[2].value){
+		message[2].innerHTML = "密码输入一致";
+		message[2].className = "right_message";
+		keyFlag = true;
+	  } else{
+		message[2].innerHTML = "两次密码输入不一致";
+		message[2].className = "wrong_message";
+		keyFlag = false;
+	  }
+	}
+	function checkEmail(){
+	  message[3].innerHTML = "";
+	  message[3].className = "";
+	  if(input[3].value != ""){
+	    with(input[3]){
+	      apos = value.indexOf("@");
+		  dotpos = value.lastIndexOf(".");
+		  if (apos<1 || dotpos - apos < 2){
+		    var promptText = document.createTextNode("邮箱地址不合法");
+		    message[3].appendChild(promptText);
+		    message[3].className = "wrong_message";
+		    keyFlag = false;
+		  } else{
+		    var promptText = document.createTextNode("邮箱地址合法");
+		    message[3].appendChild(promptText);
+		    message[3].className = "right_message";
+			keyFlag = true;
+		  }
+	    }
+	  }
+	}
+	function getStrLen(str){
+	  var enLen = 0;
+	  var zhLen = 0;
+	  for (var ch of str){
+	    if (isASCII(ch))
+		    enLen++;
+		else 
+		    zhLen++; 
+	  }
+	  return enLen + zhLen * 2;
+	}
+	function isASCII(c){
+	  return c.codePointAt(0) <= 0xFF;
+	}
+	
+	function checkPhoneNumber(){
+	  var reg = /^1[3|4|5|7|8][0-9]{9}$/;
+	  var flag = reg.test(input[4].value);
+	  if(flag){
+	    message[4].innerHTML = "手机号合法";
+		message[4].className = "right_message";
+		input[4].className = "right_input";
+		keyFlag = true;
+	  }else{
+	    message[4].innerHTML = "手机号非法";
+		message[4].className = "wrong_message";
+		input[4].className = "wrong_input";
+		keyFlag = false;
+	  }
+	}
+	
+	function submit(){
+	  if(keyFlag){
+	    alert("提交成功");
+	  }else{
+	    alert("提交失败");
+	  }
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css">
+table{
+	border:1px solid #CCC;
+	border-collapse:collapse;
+	text-align:center;
+	margin:0 auto;
+}
+td{
+	border:1px solid #CCC;
+	width:100px;
+	height:30px;
+}
+thead td{
+	border:1px solid #CCC;
+	background-color:#5B5B5B;
+	color:white;
+	height:30px;
+	position:relative;
+}
+.upbtn{
+	position:absolute;
+	top:8px;
+	right:15px;
+	border-bottom: 5px solid #fff;
+	border-left: 5px solid transparent;
+	border-right:5px solid transparent;
+}
+.downbtn{
+	position:absolute;
+	top:20px;
+	right:15px;
+	border-top: 5px solid #fff;
+	border-left: 5px solid transparent;
+	border-right:5px solid transparent;
+}
+</style>
+</head>
+<body>
+	<table id="tab">
+		
+	</table>
+<script>
+	var tabHeader = {
+		heads:[{
+			name:'name',
+			label:'姓名',
+			sortable:false
+		},
+		{
+			name:'chinese',
+			label:'语文',
+			sortable:true
+		},
+		{
+			name:'math',
+			label:'数学',
+			sortable:true
+		},
+		{
+			name:'english',
+			label:'英语',
+			sortable:true
+		},
+		{
+			name:'total',
+			label:'总分',
+			sortable:true
+		}]
+	};
+	var datas = [
+		{
+			name:'小明',
+			chinese:90,
+			math:100,
+			english:70,
+			total:260
+		},
+		{
+			name:'小花',
+			chinese:90,
+			math:70,
+			english:80,
+			total:240
+		},
+		{
+			name:'小红',
+			chinese:70,
+			math:90,
+			english:70,
+			total:230
+		}
+	];
+	
+	var table = document.getElementById("tab");
+	var dataLen = datas.length;
+	var tabHead = tabHeader.heads;
+	var tabHeadLen = tabHeader.heads.length;
+	function init(){
+		addThead();
+		addTbody();
+	}
+	
+	function addThead(){
+		var tHead = document.createElement("thead");
+		var trNode = addTr();
+		
+		//生成表头单元格
+		tabHead.forEach(function (head){
+			var tdNode = addTd(head.label);
+			trNode.appendChild(tdNode);
+			
+			//如果该列可以排序
+			if (head.sortable){
+				//生成升序按钮
+				var upbtn = document.createElement("span");
+				upbtn.className = "upbtn";
+				tdNode.appendChild(upbtn);
+				upbtn.onclick = function (){upSort(head.name)};
+				
+				//生成降序按钮
+				var downbtn = document.createElement("span");
+				downbtn.className = "downbtn";
+				tdNode.appendChild(downbtn);
+				downbtn.onclick = function (){downSort(head.name)};
+			}
+		});
+		tHead.appendChild(trNode);
+		table.appendChild(tHead);
+		
+	}
+	
+	//生成表体
+	function addTbody(){
+		var tBody = document.createElement("tbody");
+		for (var i = 0;i < dataLen;i++){
+			var trNode = addTr();
+			for (value in datas[i]){
+				var tdNode = addTd(datas[i][value]);
+				trNode.appendChild(tdNode);
+			}
+			tBody.appendChild(trNode);
+		}
+		table.appendChild(tBody);
+	}
+	//生成单元行
+	function addTr(){
+		var trNode = document.createElement('tr');
+		return trNode;
+	}
+	
+	//生成单元格
+	function addTd(value){
+		var tdNode = document.createElement("td");
+		tdNode.innerText = value;
+		return tdNode;
+	}
+	
+	function upSort(val){
+		sort1(val);
+		table.innerHTML = '';
+		init();
+	}
+	
+	function downSort(val){
+		sort2(val);
+		table.innerHTML = '';
+		init();
+	}
+	
+	function sort1(val){
+		function up(a, b){
+			return a[val] - b[val];
+		}
+		datas.sort(up);
+	}
+	
+	function sort2(val){
+		function down(a, b){
+			return b[val] - a[val];
+		}
+		datas.sort(down);
+	}
+	
+	init();
+</script>
+</body>
+</html>

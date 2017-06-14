@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/ >
+<title>task1</title>
+<style type="text/css">
+	*{
+	  padding:0px;
+	  margin:0px;
+	}
+	span{
+	  font-weight:1em;
+	  font-family:Microsoft Yahei;
+	  font-size:20px;
+	  padding:2px 10px;
+	}
+	input{
+	  border-radius:5px;
+	  border:1px solid #CCC;
+	  height:30px;
+	  margin:0px 10px;
+	}
+	.right_input{
+	  border:1px solid green;
+	  border-radius:5px;
+	  height:30px;
+	  margin:0px 10px;
+	}
+	.wrong_input{
+	  border:1px solid red;
+	  border-radius:5px;
+	  height:30px;
+	  margin:0px 10px;
+	}
+	.button{
+	  background-color:#2F79BA;
+	  color:white;
+	  padding:5px 15px;
+	  font-family:Microsoft Yahei;
+	  border-radius:5px;
+	}
+	div{
+	  display:flex;
+	  align-item:center;
+	}
+	p{
+	  font-size:10px;
+	  color:#ADADAD;
+	  margin-left:70px;
+	  margin-top:5px;
+	}
+	.right_message{
+	  color:green;
+	}
+	.wrong_message{
+	  color:red;
+	}
+</style>
+</head>
+<body>
+<div>
+<span>名称</span>
+<input  id="inputText" required/>
+<label class="button">验证</label>
+</div>
+<p id="message">必填，长度为4~16个字符</p>
+<script>
+	var para = document.getElementById("message");
+	console.log(para.value);
+	var btn = document.getElementsByClassName("button");
+	var inputText = document.getElementById("inputText");
+	btn[0].onclick = validate;
+	function validate(){
+	  if(getStrLen(inputText.value) < 4||getStrLen(inputText.value) > 16){
+	    inputText.className = "wrong_input";
+		para.innerHTML = "长度不符合要求";
+		para.className = "wrong_message";
+	  }else{
+	    inputText.className = "right_input";
+		para.innerHTML = "名称格式正确";
+		para.className = "right_message";
+	  }
+	}
+	function getStrLen(str){
+	  var enLen = 0;
+	  var zhLen = 0;
+	  for (var ch of str){
+	    if (isASCII(ch))
+		    enLen++;
+		else 
+		    zhLen++; 
+	  }
+	  return enLen + zhLen * 2;
+	}
+	function isASCII(c){
+	  return c.codePointAt(0) <= 0xFF;
+	}
+	
+	
+</script>
+</body>
+</html>
